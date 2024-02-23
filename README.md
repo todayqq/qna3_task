@@ -45,9 +45,21 @@ recipient_address = 'xxx'
 ```shell
 {
     ...
-    "invite_code": "xxx",
+    "invite_code": "DbMszBVb",
+    ...
 ```
+如果没有invite_code，可以先跑一次签到，然后在log文件中找到invite_code
+或者使用我的 invite_code
 
+```shell
+DbMszBVb
+ryWzzYHK
+cRkvgWVD
+evnFmsa2
+RbFFGXEf
+ByyRJbhA
+AQQD8Tpb
+```
 #### 6、运行
 
 `node taskRunner.js`
