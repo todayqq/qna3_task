@@ -174,6 +174,8 @@ async function getUserDetail() {
             response.data.userDetail.origin.userWalletAddress,
             response.data.userDetail.invitation.code,
             response.data.userDetail.invitation.inviteeCount,
+            response.data.userDetail.ambassadorProgram.claimed,
+            response.data.userDetail.ambassadorProgram.bonus,
             response.data.userDetail.checkInStatus.checkInDays,
             response.data.userDetail.checkInStatus.todayCount
         ].join(' ')

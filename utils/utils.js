@@ -12,7 +12,7 @@ function randomPause() {
     return Math.floor(Math.random() * (maxSeconds - minSeconds + 1)) + minSeconds;
 }
 
-async function sendRequest(url, urlConfig, timeout = 10000, maxRetries = 5) {
+async function sendRequest(url, urlConfig, timeout = 10000, maxRetries = 3) {
     let retries = 0;
 
     while (retries < maxRetries) {
@@ -26,8 +26,7 @@ async function sendRequest(url, urlConfig, timeout = 10000, maxRetries = 5) {
             url: url,
             timeout: timeout,
             cancelToken: source.token,
-//            proxy: proxyConfig,
-            // proxy: 'http://127.0.0.1:7890',
+            proxy: proxyConfig,
             method: urlConfig.method || 'get',
             onDownloadProgress: () => clearTimeout(timer),
         };
@@ -42,7 +41,7 @@ async function sendRequest(url, urlConfig, timeout = 10000, maxRetries = 5) {
                 retries++;
                 console.log(`请求超时，开始重试第 ${retries} 次`);
             } else {
-               throw error;
+               // throw error;
             }
         } finally {
             clearTimeout(timer);
