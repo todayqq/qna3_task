@@ -26,7 +26,6 @@ async function sendRequest(url, urlConfig, timeout = 10000, maxRetries = 3) {
             url: url,
             timeout: timeout,
             cancelToken: source.token,
-            proxy: proxyConfig,
             method: urlConfig.method || 'get',
             onDownloadProgress: () => clearTimeout(timer),
         };
