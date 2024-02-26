@@ -92,15 +92,15 @@ async function recaptcha(pageAction) {
 
 }
 
-async function login (wallet){
+async function login (wallet, invite_code=''){
     //const gRecaptchaResponse = await recaptcha('login');
     const url = 'https://api.qna3.ai/api/v2/auth/login?via=wallet';
     const msg = 'AI + DYOR = Ultimate Answer to Unlock Web3 Universe'
     const signature = await wallet.signMessage(msg);
-    console.log(`当前地址${wallet.address}已签名`);
+    console.log(`当前地址${wallet.address}已签名 ${invite_code}`);
 
     const data = {
-        'invite_code': config.invite_code,
+        'invite_code': invite_code,
         'wallet_address': wallet.address,
         'signature': signature,
         //'recaptcha': gRecaptchaResponse,
@@ -132,7 +132,7 @@ async function checkIn(wallet) {
     const url = 'https://api.qna3.ai/api/v2/my/check-in';
     const data = {
         "hash": tx.hash,
-        "via": 'bnb',
+        "via": 'opbnb',
     };
     const urlConfig = {
         headers: headers,
@@ -262,11 +262,33 @@ async function main() {
             wallets.push({ ...row });
         })
         .on('end', async () => {
+            let index = 0;
+            let codeKey = 0;
+
             for (const walletInfo of wallets) {
+                index++;
+                if (index%20 == 0) {
+                    codeKey++;
+                }
+
                 const wallet = new ethers.Wallet(walletInfo.privateKey, provider);
                 console.log(`开始为 ${wallet.address}签到`);
                 //console.log(`请求google验证中......`)
-                const loginStatus = await login(wallet);
+                const invite_code = [
+                    'yNDsyAZv',
+                    'c5kF8tKh',
+                    'Y6PSuwnx',
+                    '8rxDncGq',
+                    'me5VFDce',
+                    'bSBhsvDt',
+                    'K5j6K3P6',
+                    'aPAXAhbt',
+                    '2uK5Rm7W'
+                ];
+                
+                console.log('邀请码为：' + invite_code[codeKey])
+
+                const loginStatus = await login(wallet, invite_code[codeKey]);
                 console.log(`登录成功，开始签到`);
 
                 const userInfo = await getUserDetail();

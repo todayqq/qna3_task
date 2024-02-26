@@ -3,10 +3,10 @@
     "ethrpc": "https://rpc.ankr.com/eth",
     "bscrpc": "https://rpc.ankr.com/bsc",
     "opbnb": "https://1rpc.io/opbnb",
-    "walletPath": "wallet.csv",
+    "walletPath": "wallets.csv",
     "proxy": "http://9xmb93yh:9vhpElay773mbXc2_country-SouthKorea@proxy.proxy-cheap.com:31112",
     "invite_code": "9njwxqtY",
     "maxGasPrice": 100,
-    "minInterval": 10,
-    "maxInterval": 120
+    "minInterval": 1,
+    "maxInterval": 3
 }

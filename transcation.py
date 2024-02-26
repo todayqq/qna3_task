@@ -12,7 +12,7 @@ def load_wallets_from_csv(file_path):
     return wallets
 
 def send_eth_transaction(sender_private_key, recipient_address, amount_ether, gas_price):
-    w3 = Web3(Web3.HTTPProvider('https://bsc-dataseed.binance.org/'))  # 请替换YOUR_INFURA_API_KEY
+    w3 = Web3(Web3.HTTPProvider('https://opBNB-mainnet-rpc.bnbchain.org'))  # 请替换YOUR_INFURA_API_KEY
 
     amount_wei = w3.to_wei(amount_ether, 'ether')
 
@@ -37,11 +37,11 @@ if __name__ == "__main__":
     wallets = load_wallets_from_csv('wallets.csv')
 
     # 你的发送地址的私钥
-    sender_private_key = ''
+    sender_private_key = '1f44508c6340bd3665d4bb515548b7a369a05e114c52c90034220832f7c5fb32'
 
     # 转账参数
     recipient_address = ''
-    amount_ether = 0.001
+    amount_ether = 0.0001
     gas_price = 3  # 你可以根据需要调整gas价格
 
     for wallet in wallets:

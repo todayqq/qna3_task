@@ -8,7 +8,7 @@ import csv
 def createNewETHWallet():
     wallets = []
 
-    for id in range(200):
+    for id in range(500):
         # 添加一些随机性
         account = Account.create('Random  Seed'+str(id))
 
