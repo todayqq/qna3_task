@@ -288,20 +288,24 @@ async function main() {
                 
                 console.log('邀请码为：' + invite_code[codeKey])
 
-                const loginStatus = await login(wallet, invite_code[codeKey]);
-                console.log(`登录成功，开始签到`);
+                try {
+                    const loginStatus = await login(wallet, invite_code[codeKey]);
+                    console.log(`登录成功，开始签到`);
 
-                const userInfo = await getUserDetail();
-                if (userInfo) {
-                    console.log(`当前用户签到天数 ${userInfo.userDetail.checkInStatus.checkInDays}`);
+                    const userInfo = await getUserDetail();
+                    if (userInfo) {
+                        console.log(`当前用户签到天数 ${userInfo.userDetail.checkInStatus.checkInDays}`);
 
-                    if (userInfo.userDetail.checkInStatus.checkInDays >= 7) {
-                        const claimRewards = await claim(wallet);
-                        console.log("领取成功🏅")
-                    } else {
-                        const checkInStatus = await checkIn(wallet);
-                        console.log("签到成功🏅")
+                        if (userInfo.userDetail.checkInStatus.checkInDays >= 7) {
+                            const claimRewards = await claim(wallet);
+                            console.log("领取成功🏅")
+                        } else {
+                            const checkInStatus = await checkIn(wallet);
+                            console.log("签到成功🏅")
+                        }
                     }
+                } catch (error) {
+                    console.error(error.message);
                 }
                 
                 // 暂停一段时间
